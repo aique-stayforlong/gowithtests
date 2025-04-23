@@ -3,7 +3,7 @@ package main
 import "testing"
 
 func TestHello(t *testing.T) {
-	got := Hello("Aique")
+	got := Hello("Aique", "")
 	want := "Hello, Aique"
 
 	if got != want {
@@ -13,14 +13,26 @@ func TestHello(t *testing.T) {
 
 func TestHelloDefault(t *testing.T) {
 	t.Run("saying hello to people", func(t *testing.T) {
-		got := Hello("Aique")
+		got := Hello("Aique", "")
 		want := "Hello, Aique"
 
 		assertCorrectMessage(t, got, want)
 	})
 	t.Run("say 'Hello, World' when an empty string is supplied", func(t *testing.T) {
-		got := Hello("")
+		got := Hello("", "")
 		want := "Hello, World"
+
+		assertCorrectMessage(t, got, want)
+	})
+	t.Run("saying hello in Spanish", func(t *testing.T) {
+		got := Hello("Aique", "es")
+		want := "Hola, Aique"
+
+		assertCorrectMessage(t, got, want)
+	})
+	t.Run("saying hello in French", func(t *testing.T) {
+		got := Hello("Aique", "fr")
+		want := "Bonjour, Aique"
 
 		assertCorrectMessage(t, got, want)
 	})
